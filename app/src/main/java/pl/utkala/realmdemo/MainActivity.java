@@ -2,6 +2,8 @@ package pl.utkala.realmdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import io.realm.Realm;
@@ -49,6 +51,40 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_person:
+                showAddPersonDialog();
+                break;
+            case R.id.add_random_persons:
+                generateRandomPersons();
+                break;
+            case R.id.remove_random_persons:
+                removeRandomPerson();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    private void showAddPersonDialog() {
+
+    }
+
+    private void removeRandomPerson() {
+        RealmResults<Person> random = realm.where(Person.class).findAllSorted(Person.ID);
+        if(!random.isEmpty())
+            removePerson(random.first());
+    }
+
+    @Override
     protected void onDestroy() {
         if (realm != null)
             realm.close();
@@ -59,6 +95,18 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
     public void removePerson(Person person) {
         realm.beginTransaction();
         person.deleteFromRealm();
+        realm.commitTransaction();
+    }
+
+    private void generateRandomPersons(){
+        realm.beginTransaction();
+
+        for (int i = 0; i < 3; i++) {
+            String time = System.currentTimeMillis() + "";
+            Person person = new Person("John", "Doe_" + time.substring(time.length() - 4), (int)(Math.random() * 100));
+            realm.insertOrUpdate(person);
+        }
+
         realm.commitTransaction();
     }
 }

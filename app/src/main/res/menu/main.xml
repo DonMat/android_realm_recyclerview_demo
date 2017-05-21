@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/add_person"
+        android:title="@string/text_add_more"/>
+    <item
+        android:id="@+id/add_random_persons"
+        android:title="@string/text_add_more_random"/>
+    <item
+        android:id="@+id/remove_random_persons"
+        android:title="@string/text_remove_more_random"/>
+</menu>

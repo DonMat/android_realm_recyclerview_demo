@@ -2,4 +2,7 @@
     <string name="app_name">Realm Demo</string>
     <string name="text_no_data">No data</string>
     <string name="text_remove">Remove</string>
+    <string name="text_add_more">Add person</string>
+    <string name="text_add_more_random">Add more randomly</string>
+    <string name="text_remove_more_random">Remove random persons</string>
 </resources>
