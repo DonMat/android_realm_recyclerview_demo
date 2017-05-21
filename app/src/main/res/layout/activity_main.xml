@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:rrvEmptyLayoutId="@layout/empty_list_view"
         app:rrvGridLayoutSpanCount="-1"
-        app:rrvIsRefreshable="true"
+        app:rrvIsRefreshable="false"
         app:rrvLayoutType="LinearLayout"
         tools:listitem="@layout/person_list_item"
         />
