@@ -10,5 +10,5 @@
         android:title="@string/text_add_more_random"/>
     <item
         android:id="@+id/remove_random_persons"
-        android:title="@string/text_remove_more_random"/>
+        android:title="@string/text_remove_random"/>
 </menu>

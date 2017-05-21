@@ -4,6 +4,6 @@
     <string name="text_remove">Usuń</string>
     <string name="text_add_more">Dodaj osobę</string>
     <string name="text_add_more_random">Dodaj losowe osoby</string>
-    <string name="text_remove_more_random">Usuń losowe osoby</string>
+    <string name="text_remove_random">Usuń losową osobę</string>
 
 </resources>
