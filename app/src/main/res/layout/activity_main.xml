@@ -8,5 +8,14 @@
     android:orientation="vertical"
     tools:context="pl.utkala.realmdemo.MainActivity">
 
+    <co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView
+        android:id="@+id/realm_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rrvIsRefreshable="true"
+        app:rrvGridLayoutSpanCount="-1"
+        app:rrvEmptyLayoutId="@layout/empty_list_view"
+        app:rrvLayoutType="LinearLayout"
+        />
 
 </LinearLayout>
