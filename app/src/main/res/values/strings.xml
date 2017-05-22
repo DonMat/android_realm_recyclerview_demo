@@ -9,4 +9,6 @@
     <string name="text_surname">Surname</string>
     <string name="text_age">Age</string>
     <string name="text_save">Save</string>
+    <string name="text_country">Country</string>
+    <string name="text_city">City</string>
 </resources>

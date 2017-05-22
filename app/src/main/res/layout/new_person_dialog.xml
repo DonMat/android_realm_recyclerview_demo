@@ -51,7 +51,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Kraj"
+        android:hint="@string/text_country"
         >
 
         <EditText
@@ -65,7 +65,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Miasto"
+        android:hint="@string/text_city"
         >
 
         <EditText
