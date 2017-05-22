@@ -20,6 +20,8 @@ public class NewPersonFragment extends DialogFragment {
     private EditText ageEdit;
     private Button saveBtn;
 
+    private Person editPerson;
+
     public NewPersonFragment() {
     }
 
@@ -41,26 +43,44 @@ public class NewPersonFragment extends DialogFragment {
                 dismiss();
             }
         });
+
+        if(editPerson != null)
+            bindPersonData();
         return view;
     }
 
+    private void bindPersonData() {
+        nameEdit.setText(editPerson.getName());
+        surnameEdit.setText(editPerson.getSurname());
+        ageEdit.setText(String.valueOf(editPerson.getAge()));
+    }
+
     private void savePerson() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
         int age = 0;
         try {
             age = Integer.parseInt(ageEdit.getText().toString());
         } catch (Exception ignored) {
         }
 
-        Person person = new Person(
-                nameEdit.getText().toString(),
-                surnameEdit.getText().toString(),
-                age);
+        Person person;
+        if (editPerson != null)
+            person = editPerson;
+        else
+            person = new Person();
 
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        realm.copyToRealm(person);
+        person.setName(nameEdit.getText().toString());
+        person.setSurname(surnameEdit.getText().toString());
+        person.setAge(age);
+
+        realm.copyToRealmOrUpdate(person);
         realm.commitTransaction();
         realm.close();
     }
 
+    public void setEditPerson(Person editPerson) {
+        this.editPerson = editPerson;
+    }
 }

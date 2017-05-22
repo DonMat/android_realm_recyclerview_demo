@@ -15,9 +15,9 @@ import pl.utkala.realmdemo.models.Person;
 
 public class PersonsRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<Person, PersonsRecyclerViewAdapter.ViewHolder> {
 
-    RemoveListener listener;
+    PersonListListener listener;
 
-    public PersonsRecyclerViewAdapter(Context context, RealmResults<Person> realmResults, RemoveListener listener) {
+    public PersonsRecyclerViewAdapter(Context context, RealmResults<Person> realmResults, PersonListListener listener) {
         super(context, realmResults, true, true);
         this.listener = listener;
     }
@@ -34,15 +34,18 @@ public class PersonsRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<Pe
         viewHolder.person = person;
         viewHolder.setPersonText();
         viewHolder.setRemoveButton();
+        viewHolder.setOnClickListener();
     }
 
     class ViewHolder extends RealmViewHolder {
         TextView personTextView;
         Button removeButton;
         Person person;
+        View itemView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             personTextView = (TextView) itemView.findViewById(R.id.person_name_text);
             removeButton = (Button) itemView.findViewById(R.id.remove_person_button);
         }
@@ -61,9 +64,20 @@ public class PersonsRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<Pe
                 }
             });
         }
+
+        public void setOnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null)
+                        listener.editPerson(person);
+                }
+            });
+        }
     }
 
-    public interface RemoveListener {
+    public interface PersonListListener {
         void removePerson(Person person);
+        void editPerson(Person person);
     }
 }

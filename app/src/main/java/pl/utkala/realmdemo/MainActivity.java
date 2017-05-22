@@ -13,7 +13,7 @@ import io.realm.Sort;
 import pl.utkala.realmdemo.adapters.PersonsRecyclerViewAdapter;
 import pl.utkala.realmdemo.models.Person;
 
-public class MainActivity extends AppCompatActivity implements PersonsRecyclerViewAdapter.RemoveListener {
+public class MainActivity extends AppCompatActivity implements PersonsRecyclerViewAdapter.PersonListListener {
 
     private RealmRecyclerView recyclerView;
     private Realm realm;
@@ -98,6 +98,13 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
         realm.beginTransaction();
         person.deleteFromRealm();
         realm.commitTransaction();
+    }
+
+    @Override
+    public void editPerson(Person person) {
+        NewPersonFragment dialog = new NewPersonFragment();
+        dialog.setEditPerson(person);
+        dialog.show(getSupportFragmentManager(), "person_dialog");
     }
 
     private void generateRandomPersons(){
