@@ -17,6 +17,7 @@ public class Person extends RealmObject {
     private String name;
     private String surname;
     private int age;
+    private Address address;
 
     public Person() {
     }
@@ -51,8 +52,27 @@ public class Person extends RealmObject {
         return age;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getAddresText(){
+        String out = "";
+
+        if(address != null && address.getCountry() != null)
+            out += address.getCountry();
+        if(address != null && address.getCity() != null)
+            out += " " + address.getCity();
+
+        return out;
+    }
+
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(), "%s %s, %d", name, surname, age);
+        return String.format(Locale.getDefault(), "%s %s, %d \n%s", name, surname, age, getAddresText());
     }
 }

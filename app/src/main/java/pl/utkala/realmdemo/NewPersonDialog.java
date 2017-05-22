@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import io.realm.Realm;
+import pl.utkala.realmdemo.models.Address;
 import pl.utkala.realmdemo.models.Person;
 
 
@@ -21,6 +22,8 @@ public class NewPersonDialog extends DialogFragment {
     private Button saveBtn;
 
     private Person editPerson;
+    private EditText countryEdit;
+    private EditText cityEdit;
 
     public NewPersonDialog() {
     }
@@ -34,6 +37,8 @@ public class NewPersonDialog extends DialogFragment {
         nameEdit = (EditText) view.findViewById(R.id.person_name_edit);
         surnameEdit = (EditText) view.findViewById(R.id.person_surname_edit);
         ageEdit = (EditText) view.findViewById(R.id.person_age_edit);
+        cityEdit = (EditText) view.findViewById(R.id.person_city_edit);
+        countryEdit = (EditText) view.findViewById(R.id.person_country_edit);
         saveBtn = (Button) view.findViewById(R.id.save_person_btn);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +58,12 @@ public class NewPersonDialog extends DialogFragment {
         nameEdit.setText(editPerson.getName());
         surnameEdit.setText(editPerson.getSurname());
         ageEdit.setText(String.valueOf(editPerson.getAge()));
+
+        if(editPerson.getAddress() != null){
+            Address address = editPerson.getAddress();
+            cityEdit.setText(address.getCity());
+            countryEdit.setText(address.getCountry());
+        }
     }
 
     private void savePerson() {
@@ -66,14 +77,25 @@ public class NewPersonDialog extends DialogFragment {
         }
 
         Person person;
-        if (editPerson != null)
+        Address address = null;
+        if (editPerson != null){
             person = editPerson;
+            address = editPerson.getAddress();
+        }
         else
             person = new Person();
+
+        if(address == null) {
+            address = realm.copyToRealm(new Address());
+        }
 
         person.setName(nameEdit.getText().toString());
         person.setSurname(surnameEdit.getText().toString());
         person.setAge(age);
+
+        address.setCity(cityEdit.getText().toString());
+        address.setCountry(countryEdit.getText().toString());
+        person.setAddress(address);
 
         realm.copyToRealmOrUpdate(person);
         realm.commitTransaction();
