@@ -5,4 +5,8 @@
     <string name="text_add_more">Add person</string>
     <string name="text_add_more_random">Add more randomly</string>
     <string name="text_remove_random">Remove random person</string>
+    <string name="text_name">Name</string>
+    <string name="text_surname">Surname</string>
+    <string name="text_age">Age</string>
+    <string name="text_save">Save</string>
 </resources>

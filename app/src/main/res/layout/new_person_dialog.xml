@@ -9,7 +9,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Imię"
+        android:hint="@string/text_name"
         >
 
         <EditText
@@ -23,7 +23,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nazwisko"
+        android:hint="@string/text_surname"
         >
 
         <EditText
@@ -37,7 +37,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Wiek"
+        android:hint="@string/text_age"
         >
 
         <EditText
@@ -53,5 +53,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Zapisz"/>
+        android:text="@string/text_save"/>
 </LinearLayout>
