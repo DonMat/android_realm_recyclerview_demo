@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
 
         realm = Realm.getDefaultInstance();
 
-        initData();
-
         showAllPersons();
     }
 
@@ -39,16 +37,6 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
     private void setAdapter(RealmResults<Person> results) {
         PersonsRecyclerViewAdapter adapter = new PersonsRecyclerViewAdapter(this, results, this);
         recyclerView.setAdapter(adapter);
-    }
-
-    private void initData() {
-        Person john = new Person("John", "Doe", 20);
-        Person jenny = new Person("Jenny", "Doe", 26);
-
-        realm.beginTransaction();
-        realm.insertOrUpdate(john);
-        realm.insertOrUpdate(jenny);
-        realm.commitTransaction();
     }
 
     @Override
@@ -76,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
     }
 
     private void showAddPersonDialog() {
-        DialogFragment dialog = new NewPersonFragment();
+        DialogFragment dialog = new NewPersonDialog();
         dialog.show(getSupportFragmentManager(), "new_person");
     }
 
@@ -102,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements PersonsRecyclerVi
 
     @Override
     public void editPerson(Person person) {
-        NewPersonFragment dialog = new NewPersonFragment();
+        NewPersonDialog dialog = new NewPersonDialog();
         dialog.setEditPerson(person);
         dialog.show(getSupportFragmentManager(), "person_dialog");
     }

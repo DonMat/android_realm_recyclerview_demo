@@ -14,7 +14,7 @@ import io.realm.Realm;
 import pl.utkala.realmdemo.models.Person;
 
 
-public class NewPersonFragment extends DialogFragment {
+public class NewPersonDialog extends DialogFragment {
     private EditText nameEdit;
     private EditText surnameEdit;
     private EditText ageEdit;
@@ -22,7 +22,7 @@ public class NewPersonFragment extends DialogFragment {
 
     private Person editPerson;
 
-    public NewPersonFragment() {
+    public NewPersonDialog() {
     }
 
 
